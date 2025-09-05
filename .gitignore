@@ -1,42 +1,55 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ================================
+# Next.js 项目专用 .gitignore 配置
+# ================================
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# Next.js 构建和缓存文件
+.next/              # Next.js 构建输出目录
+out/                # 静态导出输出目录
+build/              # 自定义构建目录
+dist/               # 分发目录
+.swc/               # SWC 编译器缓存
 
-# testing
-/coverage
+# 环境变量文件
+# 注意：.env.example 应该被提交作为模板
+.env.local         # 本地环境变量
 
-# next.js
-/.next/
-/out/
+# 依赖管理
+node_modules/       # 依赖包目录
+# pnpm-lock.yaml    # pnpm 锁定文件
 
-# production
-/build
+# 缓存目录
+.cache/             # 通用缓存目录
+.turbo/             # Turborepo 缓存
+.eslintcache        # ESLint 缓存文件
+.stylelintcache     # Stylelint 缓存文件
+.prettiercache      # Prettier 缓存文件
 
-# misc
-.DS_Store
-*.pem
+# IDE 和编辑器
+.vscode/            # VS Code 配置（可选择性提交 settings.json）
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# 日志文件
+*.log               # 通用日志文件
+logs/               # 日志目录
+pnpm-debug.log*     # pnpm 调试日志
 
-# env files (can opt-in for committing if needed)
-.env*.local
-.env
+# 临时文件和备份
+*.tmp               # 临时文件
+*.temp              # 临时文件
+*.bak               # 备份文件
+*.backup            # 备份文件
 
-# vercel
-.vercel
+# 数据库文件（开发环境）
+*.db                # 通用数据库文件
+*.sqlite            # SQLite 数据库
+*.sqlite3           # SQLite3 数据库
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# 部署和云服务
+.vercel             # Vercel 部署配置
+.netlify            # Netlify 部署配置
+.firebase           # Firebase 配置
+.serverless         # Serverless 框架
+
+# 性能分析
+.next/analyze/      # Next.js Bundle Analyzer 输出
+bundle-analyzer/    # Webpack Bundle Analyzer
+node_modules

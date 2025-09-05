@@ -30,6 +30,9 @@ export default function Home() {
             {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
           </main>
         </div>
+        <Link href="/about" className="text-blue-500 hover:underline">
+        前往“关于我们”页面
+      </Link>
 
         <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
           <p>
