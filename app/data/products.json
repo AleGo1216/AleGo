@@ -1,0 +1,8 @@
+[
+    { "id": "p1", "title": "Statue A", "price": 199, "image": "/app/images/toy1.jpg" },
+    { "id": "p2", "title": "Statue B", "price": 499, "image": "../images/toy2.jpg" },
+    { "id": "p3", "title": "Statue C", "price": 1299, "image": "../images/toy3.jpg" },
+    { "id": "p4", "title": "Statue D", "price": 59, "image": "../images/toy4.jpg" },
+    { "id": "p5", "title": "Statue E", "price": 899, "image": "../images/toy5.jpg" },
+    { "id": "p6", "title": "Statue F", "price": 299, "image": "../images/toy6.jpg" }
+  ]

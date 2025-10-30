@@ -1,0 +1,219 @@
+/* [project]/app/styles/globals.css [app-client] (css) */
+:root {
+  --bg-900: #050507;
+  --bg-800: #0a0b0c;
+  --panel: rgba(255, 255, 255, .03);
+  --muted: #9aa6b2;
+  --card: #0e1012;
+  --accent1: #ff6b9a;
+  --accent2: #6ee7f2;
+  --accent-grad: linear-gradient(90deg, var(--accent1), var(--accent2));
+  --radius: 12px;
+  --max-w: 1280px;
+  --glass: rgba(255, 255, 255, .02);
+  --focus: rgba(110, 231, 242, .14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Inter, Poppins, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial;
+  line-height: 1.45;
+  overflow-y: auto;
+}
+
+.container, .container-grid {
+  max-width: var(--container);
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.site-header {
+  background: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .04);
+  padding: 20px 0;
+}
+
+.site-title {
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.shop-wrapper.container-grid {
+  gap: var(--gap);
+  grid-template-columns: 300px 1fr;
+  align-items: start;
+  display: grid;
+}
+
+.filters, .filters-area {
+  border-radius: var(--radius);
+  background: linear-gradient(rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+  border: 1px solid rgba(255, 255, 255, .03);
+  padding: 16px;
+}
+
+.label-inline {
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-size: 13px;
+  display: block;
+}
+
+.range-inputs {
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  display: flex;
+}
+
+.range-inputs input {
+  color: var(--text);
+  background: none;
+  border: 1px solid rgba(255, 255, 255, .04);
+  border-radius: 8px;
+  flex: 1;
+  padding: 8px 10px;
+}
+
+.sep {
+  color: var(--muted);
+  margin: 0 6px;
+}
+
+.label-block {
+  color: var(--muted);
+  margin-bottom: 12px;
+  display: block;
+}
+
+label select {
+  width: 100%;
+  color: var(--text);
+  background: none;
+  border: 1px solid rgba(255, 255, 255, .04);
+  border-radius: 8px;
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #04263a;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+}
+
+.controls-actions {
+  margin-top: 8px;
+}
+
+.product-area {
+  min-height: 260px;
+}
+
+.product-grid {
+  gap: var(--gap);
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 16px;
+  display: grid;
+}
+
+.product-card {
+  background: linear-gradient(rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+  border: 1px solid rgba(255, 255, 255, .03);
+  border-radius: 12px;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 220px;
+  padding: 12px;
+  display: flex;
+}
+
+.product-img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+  border-radius: 8px;
+  width: 100%;
+  height: 150px;
+}
+
+.product-title {
+  color: var(--text);
+  margin: 0;
+  font-size: 15px;
+}
+
+.product-price {
+  color: var(--accent);
+  margin-top: auto;
+  font-weight: 700;
+}
+
+.pagination {
+  flex-wrap: wrap;
+  gap: 8px;
+  display: flex;
+}
+
+.page-btn {
+  color: var(--muted);
+  cursor: pointer;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, .03);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.page-btn.active, .page-btn[aria-current="page"] {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #04263a;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+@media (max-width: 1000px) {
+  .shop-wrapper.container-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    z-index: 10;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 12px;
+  }
+}
+
+:focus {
+  outline-offset: 2px;
+  outline: 3px solid rgba(86, 182, 255, .12);
+}
+
+/*# sourceMappingURL=app_styles_globals_9f18c58c.css.map*/

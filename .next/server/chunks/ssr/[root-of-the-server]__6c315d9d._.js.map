@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["file:///Users/meteor/Desktop/AleGo/ale-project/app/shop/page.tsx"],"sourcesContent":["import '../../styles/shop.css';\nimport HeaderClient from '../../components/HeaderClient';\nimport Footer from '../../components/Footer';\nimport ShopClient from '../../components/shop/ShopClient';\n\nexport const metadata = {\n  title: 'ALeToys — Shop All',\n  description: 'Curated limited editions & contemporary collectibles',\n};\n\nexport default function ShopPage() {\n  return (\n    <>\n      <HeaderClient />\n      <main>\n        {/* 客户端组件，封装全部动态逻辑 */}\n        <ShopClient />\n      </main>\n      <Footer />\n    </>\n  );\n}"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAKO,MAAM,WAAW;IACtB,OAAO;IACP,aAAa;AACf;AAEe,SAAS;IACtB,qBACE;;0BACE,8OAAC;;;;;0BACD,8OAAC;0BAEC,cAAA,8OAAC;;;;;;;;;;0BAEH,8OAAC;;;;;;;AAGP","debugId":null}}]
+}

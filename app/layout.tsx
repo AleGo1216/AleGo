@@ -1,38 +1,20 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import { ReactNode } from "react";
+import ThemeProvider from "./components/ThemeProvider";
+import Header from "./components/Header";
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
-export const metadata: Metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+export const metadata = {
+  title: "ALeToys Premium Statues"
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
-  subsets: ["latin"],
-});
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
+  // layout is a server component, but ThemeProvider is client and will control theme on client
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+    <html lang="en">
+      
+      <body inmaintabuse="1">
+        <ThemeProvider>
+          <Header />
           {children}
         </ThemeProvider>
       </body>

@@ -1,0 +1,1902 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/app/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+// app/page.tsx
+__turbopack_context__.s([
+    "default",
+    ()=>Page
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+'use client';
+;
+const bannerImages = [
+    '/images/banner1.jpg',
+    '/images/banner2.jpg',
+    '/images/banner3.jpg'
+];
+const productImages = Array.from({
+    length: 32
+}, (_, i)=>"/images/item".concat(i + 1, ".jpg"));
+const hotDeals = [
+    {
+        img: '/images/hotdeal1.jpg',
+        title: 'Celestial Warrior',
+        desc: 'A breathtaking statue of cosmic power.',
+        price: '\$299.99'
+    },
+    {
+        img: '/images/hotdeal2.jpg',
+        title: "Dragon's Fury",
+        desc: 'Intricate details capturing mythical might.',
+        price: '\$349.99'
+    },
+    {
+        img: '/images/hotdeal3.jpg',
+        title: 'Steampunk Inventor',
+        desc: 'Masterpiece of gears and innovation.',
+        price: '\$279.99'
+    }
+];
+const reviews = [
+    {
+        text: "Absolutely stunning craftsmanship. The detail is beyond anything I've seen. A true centerpiece!",
+        author: '- Alex Johnson'
+    },
+    {
+        text: "The quality of materials and the artistic vision are exceptional. Worth every penny.",
+        author: '- Sarah Chen'
+    },
+    {
+        text: "ALeToys delivered on their promise of premium. This statue is a work of art.",
+        author: '- Michael Rodriguez'
+    },
+    {
+        text: "Impressed by the limited edition aspect and the unique designs. Highly recommend!",
+        author: '- Emily Carter'
+    },
+    {
+        text: "Fast shipping and excellent packaging. The statue arrived in perfect condition.",
+        author: '- David Lee'
+    },
+    {
+        text: "The level of detail and the hand-painted finish are incredible. A treasure for any collector.",
+        author: '- Jessica Kim'
+    },
+    {
+        text: "This is my third purchase, and I'm consistently blown away by the artistry and quality.",
+        author: '- Christopher Davis'
+    },
+    {
+        text: "The 'wow' factor is undeniable. The statues truly elevate my collection.",
+        author: '- Olivia Brown'
+    },
+    {
+        text: "A must-have for any serious collector of high-end statues.",
+        author: '- William Taylor'
+    },
+    {
+        text: "Exquisite. The balance of design and execution is perfect. Thank you, ALeToys!",
+        author: '- Sophia Wilson'
+    }
+];
+function Page() {
+    _s();
+    // Header scrolled
+    const [headerScrolled, setHeaderScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Banner slideshow
+    const [currentSlide, setCurrentSlide] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const slideIntervalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    // Dots pause when clicked (we'll clear interval on manual click)
+    const goToSlide = function(index) {
+        let pause = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
+        setCurrentSlide(index);
+        if (pause && slideIntervalRef.current) {
+            window.clearInterval(slideIntervalRef.current);
+            slideIntervalRef.current = null;
+        }
+    };
+    // Particle canvas
+    const canvasRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const particlesRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])([]);
+    const mouseRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])({
+        x: null,
+        y: null,
+        radius: 100
+    });
+    const rafRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    // Reviews carousel
+    const [currentReviewIndex, setCurrentReviewIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const reviewAutoRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    // Consultation icon show
+    const [showConsultation, setShowConsultation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Page.useEffect": ()=>{
+            // Scroll handlers
+            const onScroll = {
+                "Page.useEffect.onScroll": ()=>{
+                    setHeaderScrolled(window.scrollY > 50);
+                    setShowConsultation(window.scrollY > 200);
+                }
+            }["Page.useEffect.onScroll"];
+            window.addEventListener('scroll', onScroll);
+            // Start slideshow
+            function startSlideShow() {
+                if (slideIntervalRef.current) return;
+                slideIntervalRef.current = window.setInterval({
+                    "Page.useEffect.startSlideShow": ()=>{
+                        setCurrentSlide({
+                            "Page.useEffect.startSlideShow": (s)=>(s + 1) % bannerImages.length
+                        }["Page.useEffect.startSlideShow"]);
+                    }
+                }["Page.useEffect.startSlideShow"], 6000);
+            }
+            startSlideShow();
+            // Init particles
+            const canvas = canvasRef.current;
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                function resize() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    initParticles();
+                }
+                function initParticles() {
+                    particlesRef.current = [];
+                    for(let i = 0; i < 60; i++){
+                        particlesRef.current.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            r: Math.random() * 2 + 1,
+                            dx: (Math.random() - 0.5) * 0.3,
+                            dy: (Math.random() - 0.5) * 0.3,
+                            hueOffset: Math.random() * 40
+                        });
+                    }
+                }
+                function drawParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const timeHue = 250 + Math.sin(Date.now() / 2000) * 20;
+                    particlesRef.current.forEach({
+                        "Page.useEffect.drawParticles": (p)=>{
+                            const hslColor = "hsl(".concat(timeHue + p.hueOffset, ",80%,65%)");
+                            ctx.beginPath();
+                            ctx.shadowBlur = 15;
+                            ctx.shadowColor = hslColor;
+                            ctx.fillStyle = hslColor;
+                            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                            ctx.fill();
+                            if (mouseRef.current.x !== null && mouseRef.current.y !== null) {
+                                let dx = p.x - mouseRef.current.x, dy = p.y - mouseRef.current.y, dist = Math.sqrt(dx * dx + dy * dy);
+                                if (dist < mouseRef.current.radius) {
+                                    const angle = Math.atan2(dy, dx);
+                                    const force = (mouseRef.current.radius - dist) / mouseRef.current.radius;
+                                    p.x += Math.cos(angle) * force * 2;
+                                    p.y += Math.sin(angle) * force * 2;
+                                }
+                            }
+                            p.x += p.dx;
+                            p.y += p.dy;
+                            if (p.x < 0) p.x = canvas.width;
+                            if (p.x > canvas.width) p.x = 0;
+                            if (p.y < 0) p.y = canvas.height;
+                            if (p.y > canvas.height) p.y = 0;
+                        }
+                    }["Page.useEffect.drawParticles"]);
+                    ctx.shadowBlur = 0;
+                    rafRef.current = requestAnimationFrame(drawParticles);
+                }
+                resize();
+                drawParticles();
+                const onResize = {
+                    "Page.useEffect.onResize": ()=>{
+                        resize();
+                    }
+                }["Page.useEffect.onResize"];
+                window.addEventListener('resize', onResize);
+                const onMouseMove = {
+                    "Page.useEffect.onMouseMove": (e)=>{
+                        mouseRef.current.x = e.clientX;
+                        mouseRef.current.y = e.clientY;
+                    }
+                }["Page.useEffect.onMouseMove"];
+                const onMouseLeave = {
+                    "Page.useEffect.onMouseLeave": ()=>{
+                        mouseRef.current.x = null;
+                        mouseRef.current.y = null;
+                    }
+                }["Page.useEffect.onMouseLeave"];
+                window.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('mouseleave', onMouseLeave);
+                // touch
+                const onTouchMove = {
+                    "Page.useEffect.onTouchMove": (e)=>{
+                        if (e.touches.length > 0) {
+                            mouseRef.current.x = e.touches[0].clientX;
+                            mouseRef.current.y = e.touches[0].clientY;
+                        }
+                    }
+                }["Page.useEffect.onTouchMove"];
+                const onTouchEnd = {
+                    "Page.useEffect.onTouchEnd": ()=>{
+                        mouseRef.current.x = null;
+                        mouseRef.current.y = null;
+                    }
+                }["Page.useEffect.onTouchEnd"];
+                window.addEventListener('touchmove', onTouchMove, {
+                    passive: true
+                });
+                window.addEventListener('touchend', onTouchEnd);
+                // cleanup for canvas-specific
+                return ({
+                    "Page.useEffect": ()=>{
+                        window.removeEventListener('resize', onResize);
+                        window.removeEventListener('mousemove', onMouseMove);
+                        window.removeEventListener('mouseleave', onMouseLeave);
+                        window.removeEventListener('touchmove', onTouchMove);
+                        window.removeEventListener('touchend', onTouchEnd);
+                        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+                    }
+                })["Page.useEffect"];
+            }
+            return ({
+                "Page.useEffect": ()=>{
+                    window.removeEventListener('scroll', onScroll);
+                    if (slideIntervalRef.current) {
+                        window.clearInterval(slideIntervalRef.current);
+                        slideIntervalRef.current = null;
+                    }
+                }
+            })["Page.useEffect"];
+        }
+    }["Page.useEffect"], []);
+    // When banner images or currentSlide change, ensure active slide updated by setCurrentSlide
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Page.useEffect": ()=>{
+        // nothing else needed — render reads currentSlide
+        }
+    }["Page.useEffect"], [
+        currentSlide
+    ]);
+    // Reviews auto-scroll
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Page.useEffect": ()=>{
+            function startReviewAutoScroll() {
+                if (reviewAutoRef.current) return;
+                reviewAutoRef.current = window.setInterval({
+                    "Page.useEffect.startReviewAutoScroll": ()=>{
+                        setCurrentReviewIndex({
+                            "Page.useEffect.startReviewAutoScroll": (i)=>(i + 1) % reviews.length
+                        }["Page.useEffect.startReviewAutoScroll"]);
+                    }
+                }["Page.useEffect.startReviewAutoScroll"], 7000);
+            }
+            startReviewAutoScroll();
+            return ({
+                "Page.useEffect": ()=>{
+                    if (reviewAutoRef.current) {
+                        window.clearInterval(reviewAutoRef.current);
+                        reviewAutoRef.current = null;
+                    }
+                }
+            })["Page.useEffect"];
+        }
+    }["Page.useEffect"], []);
+    // Pause auto-scroll on hover: attach handlers to reviews carousel via refs (use inline onMouseEnter/onMouseLeave below)
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
+                className: headerScrolled ? 'scrolled' : '',
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "logo",
+                        children: "ALeToys"
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 215,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        className: "active",
+                                        children: "Home"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 219,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/page.tsx",
+                                    lineNumber: 218,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        children: "Collections"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 222,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/page.tsx",
+                                    lineNumber: 221,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                            href: "#",
+                                            children: "Limited Masterpieces"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 225,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "tooltip",
+                                            children: "Discover our exclusive, limited-edition sculptures."
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 226,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/page.tsx",
+                                    lineNumber: 224,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                            href: "#",
+                                            children: "Buyer's Guide"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 229,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "tooltip",
+                                            children: "Tips and information for collectors."
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 230,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/page.tsx",
+                                    lineNumber: 228,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        children: "About / Contact"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 233,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/page.tsx",
+                                    lineNumber: 232,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/page.tsx",
+                            lineNumber: 217,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 216,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "icons",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                type: "text",
+                                placeholder: "Search..."
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 238,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                className: "fas fa-heart"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 239,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                className: "fas fa-user"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 240,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 237,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 214,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "banner",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "slides",
+                        children: bannerImages.map((src, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "slide ".concat(idx === currentSlide ? 'active' : ''),
+                                style: {
+                                    backgroundImage: "url(".concat(src, ")")
+                                }
+                            }, idx, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 249,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 247,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("canvas", {
+                        id: "particleCanvas",
+                        ref: canvasRef
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 257,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "banner-content",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                children: "Premium Limited Statues"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 260,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "Every piece is handcrafted by skilled artisans"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 261,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 259,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "dots",
+                        children: bannerImages.map((_, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "dot ".concat(idx === currentSlide ? 'active' : ''),
+                                onClick: ()=>goToSlide(idx, true)
+                            }, idx, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 266,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 264,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 246,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "features",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "feature-card",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                className: "fas fa-paint-brush"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 278,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                children: "Unique Design"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 279,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "One-of-a-kind concepts"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 280,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 277,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "feature-card",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                className: "fas fa-swatchbook"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 283,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                children: "Artisan Painted"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 284,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "Skilled craftsmen painting"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 285,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 282,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "feature-card",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                className: "fas fa-hourglass-half"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 288,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                children: "Limited Release"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 289,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "Short availability"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 290,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 287,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "feature-card",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                className: "fas fa-shield-alt"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 293,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                children: "Quality Guarantee"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 294,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "Trusted service"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 295,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 292,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 276,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "category-section",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "category-header",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "category-title",
+                                children: "New Arrivals"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 302,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "category-actions",
+                                children: [
+                                    "View All ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fas fa-arrow-right"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 303,
+                                        columnNumber: 54
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 303,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 301,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "category-products",
+                        children: productImages.slice(0, 8).map((src, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: src,
+                                alt: "Product ".concat(idx + 1)
+                            }, idx, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 307,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 305,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 300,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "category-section",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "category-header",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "category-title",
+                                children: "Collectible Limited Statues"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 314,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "category-actions",
+                                children: [
+                                    "View All ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fas fa-arrow-right"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 315,
+                                        columnNumber: 54
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 315,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 313,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "category-products",
+                        children: productImages.slice(8, 16).map((src, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: src,
+                                alt: "Product ".concat(idx + 9)
+                            }, idx, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 319,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 317,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 312,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "category-section",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "category-header",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "category-title",
+                                children: "Featured Limited Sculptures"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 326,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "category-actions",
+                                children: [
+                                    "View All ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fas fa-arrow-right"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 327,
+                                        columnNumber: 54
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 327,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 325,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "category-products",
+                        children: productImages.slice(16, 24).map((src, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: src,
+                                alt: "Product ".concat(idx + 17)
+                            }, idx, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 331,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 329,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 324,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "category-section",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "category-header",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "category-title",
+                                children: "In-Stock Exclusives"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 338,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "category-actions",
+                                children: [
+                                    "View All ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fas fa-arrow-right"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 339,
+                                        columnNumber: 54
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 339,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 337,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "category-products",
+                        children: productImages.slice(24, 32).map((src, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: src,
+                                alt: "Product ".concat(idx + 25)
+                            }, idx, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 343,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 341,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 336,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "hot-deals-section",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "hot-deals-header",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "hot-deals-title",
+                                children: "This Month's Hot Deals"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 351,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "hot-deals-subtitle",
+                                children: "Unmissable offers on selected premium statues."
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 352,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 350,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "hot-deals-grid",
+                        children: hotDeals.map((d, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "hot-deal-item",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: d.img,
+                                        alt: d.title
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 357,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                        children: d.title
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 358,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        children: d.desc
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 359,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "price",
+                                        children: d.price
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 360,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, i, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 356,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 354,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 349,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "reviews-section",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "reviews-header",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "reviews-title",
+                                children: "Customer Spotlight"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 369,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "reviews-subtitle",
+                                children: "Hear from our valued collectors."
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 370,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 368,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "reviews-carousel",
+                        onMouseEnter: ()=>{
+                            if (reviewAutoRef.current) {
+                                window.clearInterval(reviewAutoRef.current);
+                                reviewAutoRef.current = null;
+                            }
+                        },
+                        onMouseLeave: ()=>{
+                            if (!reviewAutoRef.current) {
+                                reviewAutoRef.current = window.setInterval(()=>{
+                                    setCurrentReviewIndex((i)=>(i + 1) % reviews.length);
+                                }, 7000);
+                            }
+                        },
+                        children: [
+                            reviews.map((r, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "review-item ".concat(idx === currentReviewIndex ? 'active' : ''),
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                            className: "fas fa-quote-left"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 390,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            children: '"'.concat(r.text, '"')
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 391,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "reviewer",
+                                            children: r.author
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 392,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, idx, true, {
+                                    fileName: "[project]/app/page.tsx",
+                                    lineNumber: 389,
+                                    columnNumber: 13
+                                }, this)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "review-controls",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fas fa-chevron-left prev-review",
+                                        onClick: ()=>setCurrentReviewIndex((i)=>(i - 1 + reviews.length) % reviews.length)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 397,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fas fa-chevron-right next-review",
+                                        onClick: ()=>setCurrentReviewIndex((i)=>(i + 1) % reviews.length)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 401,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 396,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 372,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 367,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "brand-story-section",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "brand-story-header",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                            className: "brand-story-title",
+                            children: "Our Story: The Art of ALeToys"
+                        }, void 0, false, {
+                            fileName: "[project]/app/page.tsx",
+                            lineNumber: 412,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 411,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "brand-story-content",
+                        children: [
+                            "At ALeToys, we believe that statues are more than just collectibles; they are ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                children: "expressions of passion, artistry, and imagination"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 415,
+                                columnNumber: 89
+                            }, this),
+                            ". Each of our premium pieces is a testament to ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                children: "artisanal dedication"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 415,
+                                columnNumber: 202
+                            }, this),
+                            ". Our sculptures are born from ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                children: "ingenious designs"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 415,
+                                columnNumber: 270
+                            }, this),
+                            " conceived by visionary artists, meticulously brought to life by ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                children: "master craftsmen"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 415,
+                                columnNumber: 369
+                            }, this),
+                            " who pour their skill and soul into every curve and detail. We use only the ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                children: "highest quality materials"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 415,
+                                columnNumber: 478
+                            }, this),
+                            ", ensuring that each statue is not only visually stunning but also built to last, becoming a treasured heirloom for generations. We are committed to creating pieces that inspire awe and admiration, bridging the gap between fantasy and reality."
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 414,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 410,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+                className: "contact-social-section",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "contact-info",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                className: "contact-social-title",
+                                children: "Get In Touch"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 422,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                children: "Have questions about our statues or need personalized advice? We're here to help!"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 423,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "contact-buttons",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        className: "contact-button whatsapp",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                                className: "fab fa-whatsapp"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 425,
+                                                columnNumber: 61
+                                            }, this),
+                                            "WhatsApp"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 425,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        className: "contact-button wechat",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                                className: "fab fa-weixin"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 426,
+                                                columnNumber: 59
+                                            }, this),
+                                            "WeChat"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 426,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 424,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 421,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "social-links",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                className: "contact-social-title",
+                                children: "Follow Us"
+                            }, void 0, false, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 431,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                href: "#",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fab fa-facebook-f"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 432,
+                                        columnNumber: 23
+                                    }, this),
+                                    "Facebook"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 432,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                href: "#",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fab fa-twitter"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 433,
+                                        columnNumber: 23
+                                    }, this),
+                                    "Twitter"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 433,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                href: "#",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                        className: "fab fa-instagram"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 434,
+                                        columnNumber: 23
+                                    }, this),
+                                    "Instagram"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 434,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 430,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "qr-codes",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "qr-code-container",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: "/images/whatsapp-qr.png",
+                                        alt: "WhatsApp QR Code"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 439,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        children: "WhatsApp Us"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 440,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 438,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "qr-code-container",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: "/images/wechat-qr.png",
+                                        alt: "WeChat QR Code"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 443,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        children: "WeChat Us"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 444,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 442,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 437,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 420,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "footer-content",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "footer-section logo-section",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "logo",
+                                        children: "ALeToys"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 453,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        children: "Discover the pinnacle of collectible art. Handcrafted statues for the discerning collector."
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 454,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 452,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "footer-section",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        children: "Quick Links"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 458,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "Home"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 460,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 460,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "Collections"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 461,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 461,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "Limited Masterpieces"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 462,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 462,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "Buyer's Guide"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 463,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 463,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "About Us"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 464,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 464,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "Contact"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 465,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 465,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 459,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 457,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "footer-section",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        children: "Customer Care"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 470,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "FAQ"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 472,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 472,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "Shipping & Returns"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 473,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 473,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "Privacy Policy"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 474,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 474,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                    href: "#",
+                                                    children: "Terms of Service"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/page.tsx",
+                                                    lineNumber: 475,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/page.tsx",
+                                                lineNumber: 475,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 471,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 469,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "footer-section social-icons",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        children: "Follow Us"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 480,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        "aria-label": "Facebook",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                            className: "fab fa-facebook-f"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 481,
+                                            columnNumber: 47
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 481,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        "aria-label": "Twitter",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                            className: "fab fa-twitter"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 482,
+                                            columnNumber: 46
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 482,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        "aria-label": "Instagram",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                            className: "fab fa-instagram"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 483,
+                                            columnNumber: 48
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 483,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: "#",
+                                        "aria-label": "Pinterest",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                                            className: "fab fa-pinterest"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/page.tsx",
+                                            lineNumber: 484,
+                                            columnNumber: 48
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/page.tsx",
+                                        lineNumber: 484,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/page.tsx",
+                                lineNumber: 479,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 451,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "footer-bottom",
+                        children: "© 2023 ALeToys. All rights reserved."
+                    }, void 0, false, {
+                        fileName: "[project]/app/page.tsx",
+                        lineNumber: 488,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 450,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "consultation-icon ".concat(showConsultation ? 'show' : ''),
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
+                    className: "fas fa-comments"
+                }, void 0, false, {
+                    fileName: "[project]/app/page.tsx",
+                    lineNumber: 495,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/page.tsx",
+                lineNumber: 494,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true);
+}
+_s(Page, "BCNeeZvb/txBeQNGTe8RgOnvgjE=");
+_c = Page;
+var _c;
+__turbopack_context__.k.register(_c, "Page");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/node_modules/next/dist/compiled/react/cjs/react-jsx-dev-runtime.development.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * @license React
+ * react-jsx-dev-runtime.development.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+"use strict";
+"production" !== ("TURBOPACK compile-time value", "development") && function() {
+    function getComponentNameFromType(type) {
+        if (null == type) return null;
+        if ("function" === typeof type) return type.$$typeof === REACT_CLIENT_REFERENCE ? null : type.displayName || type.name || null;
+        if ("string" === typeof type) return type;
+        switch(type){
+            case REACT_FRAGMENT_TYPE:
+                return "Fragment";
+            case REACT_PROFILER_TYPE:
+                return "Profiler";
+            case REACT_STRICT_MODE_TYPE:
+                return "StrictMode";
+            case REACT_SUSPENSE_TYPE:
+                return "Suspense";
+            case REACT_SUSPENSE_LIST_TYPE:
+                return "SuspenseList";
+            case REACT_ACTIVITY_TYPE:
+                return "Activity";
+        }
+        if ("object" === typeof type) switch("number" === typeof type.tag && console.error("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."), type.$$typeof){
+            case REACT_PORTAL_TYPE:
+                return "Portal";
+            case REACT_CONTEXT_TYPE:
+                return type.displayName || "Context";
+            case REACT_CONSUMER_TYPE:
+                return (type._context.displayName || "Context") + ".Consumer";
+            case REACT_FORWARD_REF_TYPE:
+                var innerType = type.render;
+                type = type.displayName;
+                type || (type = innerType.displayName || innerType.name || "", type = "" !== type ? "ForwardRef(" + type + ")" : "ForwardRef");
+                return type;
+            case REACT_MEMO_TYPE:
+                return innerType = type.displayName || null, null !== innerType ? innerType : getComponentNameFromType(type.type) || "Memo";
+            case REACT_LAZY_TYPE:
+                innerType = type._payload;
+                type = type._init;
+                try {
+                    return getComponentNameFromType(type(innerType));
+                } catch (x) {}
+        }
+        return null;
+    }
+    function testStringCoercion(value) {
+        return "" + value;
+    }
+    function checkKeyStringCoercion(value) {
+        try {
+            testStringCoercion(value);
+            var JSCompiler_inline_result = !1;
+        } catch (e) {
+            JSCompiler_inline_result = !0;
+        }
+        if (JSCompiler_inline_result) {
+            JSCompiler_inline_result = console;
+            var JSCompiler_temp_const = JSCompiler_inline_result.error;
+            var JSCompiler_inline_result$jscomp$0 = "function" === typeof Symbol && Symbol.toStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+            JSCompiler_temp_const.call(JSCompiler_inline_result, "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.", JSCompiler_inline_result$jscomp$0);
+            return testStringCoercion(value);
+        }
+    }
+    function getTaskName(type) {
+        if (type === REACT_FRAGMENT_TYPE) return "<>";
+        if ("object" === typeof type && null !== type && type.$$typeof === REACT_LAZY_TYPE) return "<...>";
+        try {
+            var name = getComponentNameFromType(type);
+            return name ? "<" + name + ">" : "<...>";
+        } catch (x) {
+            return "<...>";
+        }
+    }
+    function getOwner() {
+        var dispatcher = ReactSharedInternals.A;
+        return null === dispatcher ? null : dispatcher.getOwner();
+    }
+    function UnknownOwner() {
+        return Error("react-stack-top-frame");
+    }
+    function hasValidKey(config) {
+        if (hasOwnProperty.call(config, "key")) {
+            var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+            if (getter && getter.isReactWarning) return !1;
+        }
+        return void 0 !== config.key;
+    }
+    function defineKeyPropWarningGetter(props, displayName) {
+        function warnAboutAccessingKey() {
+            specialPropKeyWarningShown || (specialPropKeyWarningShown = !0, console.error("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)", displayName));
+        }
+        warnAboutAccessingKey.isReactWarning = !0;
+        Object.defineProperty(props, "key", {
+            get: warnAboutAccessingKey,
+            configurable: !0
+        });
+    }
+    function elementRefGetterWithDeprecationWarning() {
+        var componentName = getComponentNameFromType(this.type);
+        didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = !0, console.error("Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."));
+        componentName = this.props.ref;
+        return void 0 !== componentName ? componentName : null;
+    }
+    function ReactElement(type, key, props, owner, debugStack, debugTask) {
+        var refProp = props.ref;
+        type = {
+            $$typeof: REACT_ELEMENT_TYPE,
+            type: type,
+            key: key,
+            props: props,
+            _owner: owner
+        };
+        null !== (void 0 !== refProp ? refProp : null) ? Object.defineProperty(type, "ref", {
+            enumerable: !1,
+            get: elementRefGetterWithDeprecationWarning
+        }) : Object.defineProperty(type, "ref", {
+            enumerable: !1,
+            value: null
+        });
+        type._store = {};
+        Object.defineProperty(type._store, "validated", {
+            configurable: !1,
+            enumerable: !1,
+            writable: !0,
+            value: 0
+        });
+        Object.defineProperty(type, "_debugInfo", {
+            configurable: !1,
+            enumerable: !1,
+            writable: !0,
+            value: null
+        });
+        Object.defineProperty(type, "_debugStack", {
+            configurable: !1,
+            enumerable: !1,
+            writable: !0,
+            value: debugStack
+        });
+        Object.defineProperty(type, "_debugTask", {
+            configurable: !1,
+            enumerable: !1,
+            writable: !0,
+            value: debugTask
+        });
+        Object.freeze && (Object.freeze(type.props), Object.freeze(type));
+        return type;
+    }
+    function jsxDEVImpl(type, config, maybeKey, isStaticChildren, debugStack, debugTask) {
+        var children = config.children;
+        if (void 0 !== children) if (isStaticChildren) if (isArrayImpl(children)) {
+            for(isStaticChildren = 0; isStaticChildren < children.length; isStaticChildren++)validateChildKeys(children[isStaticChildren]);
+            Object.freeze && Object.freeze(children);
+        } else console.error("React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.");
+        else validateChildKeys(children);
+        if (hasOwnProperty.call(config, "key")) {
+            children = getComponentNameFromType(type);
+            var keys = Object.keys(config).filter(function(k) {
+                return "key" !== k;
+            });
+            isStaticChildren = 0 < keys.length ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
+            didWarnAboutKeySpread[children + isStaticChildren] || (keys = 0 < keys.length ? "{" + keys.join(": ..., ") + ": ...}" : "{}", console.error('A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />', isStaticChildren, children, keys, children), didWarnAboutKeySpread[children + isStaticChildren] = !0);
+        }
+        children = null;
+        void 0 !== maybeKey && (checkKeyStringCoercion(maybeKey), children = "" + maybeKey);
+        hasValidKey(config) && (checkKeyStringCoercion(config.key), children = "" + config.key);
+        if ("key" in config) {
+            maybeKey = {};
+            for(var propName in config)"key" !== propName && (maybeKey[propName] = config[propName]);
+        } else maybeKey = config;
+        children && defineKeyPropWarningGetter(maybeKey, "function" === typeof type ? type.displayName || type.name || "Unknown" : type);
+        return ReactElement(type, children, maybeKey, getOwner(), debugStack, debugTask);
+    }
+    function validateChildKeys(node) {
+        "object" === typeof node && null !== node && node.$$typeof === REACT_ELEMENT_TYPE && node._store && (node._store.validated = 1);
+    }
+    var React = __turbopack_context__.r("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+        return null;
+    };
+    React = {
+        react_stack_bottom_frame: function(callStackForError) {
+            return callStackForError();
+        }
+    };
+    var specialPropKeyWarningShown;
+    var didWarnAboutElementRef = {};
+    var unknownOwnerDebugStack = React.react_stack_bottom_frame.bind(React, UnknownOwner)();
+    var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
+    var didWarnAboutKeySpread = {};
+    exports.Fragment = REACT_FRAGMENT_TYPE;
+    exports.jsxDEV = function(type, config, maybeKey, isStaticChildren) {
+        var trackActualOwner = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
+        return jsxDEVImpl(type, config, maybeKey, isStaticChildren, trackActualOwner ? Error("react-stack-top-frame") : unknownOwnerDebugStack, trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask);
+    };
+}();
+}),
+"[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
+'use strict';
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    module.exports = __turbopack_context__.r("[project]/node_modules/next/dist/compiled/react/cjs/react-jsx-dev-runtime.development.js [app-client] (ecmascript)");
+}
+}),
+]);
+
+//# sourceMappingURL=_a1b13bc1._.js.map

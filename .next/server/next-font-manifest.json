@@ -1,16 +1,6 @@
 {
-  "app": {
-    "[project]/app/about/page": [
-      "static/media/caa3a2e1cccd8315-s.p.6435ea53.woff2"
-    ],
-    "[project]/app/item/page": [
-      "static/media/caa3a2e1cccd8315-s.p.6435ea53.woff2"
-    ],
-    "[project]/app/page": [
-      "static/media/caa3a2e1cccd8315-s.p.6435ea53.woff2"
-    ]
-  },
-  "appUsingSizeAdjust": true,
+  "app": {},
+  "appUsingSizeAdjust": false,
   "pages": {},
   "pagesUsingSizeAdjust": false
 }
