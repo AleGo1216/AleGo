@@ -10,3 +10,11 @@ export type HotDeal = {
     id: string;
     title: string;
   };
+
+  // lib/types.ts
+export type Review = {
+  author: string;
+  rating: number;
+  when: string;
+  text: string;
+};

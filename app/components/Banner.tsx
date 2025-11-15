@@ -79,9 +79,8 @@ export default function Banner() {
               <h1>{s.title}</h1>
               <p>{s.subtitle}</p>
 
-              {s.cta && (
-                <Button
-                  type="primary"
+              {/* {s.cta && (
+                <button
                   size="large"
                   onClick={() => {
                     if (s.cta?.href) {
@@ -91,8 +90,8 @@ export default function Banner() {
                   }}
                 >
                   {s.cta.label}
-                </Button>
-              )}
+                </button>
+              )} */}
             </div>
           </div>
         ))}

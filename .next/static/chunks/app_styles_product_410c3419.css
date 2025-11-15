@@ -355,14 +355,20 @@ nav.main-nav {
   background: var(--panel);
   border: 1px solid rgba(255, 255, 255, .03);
   border-radius: 14px;
+  min-width: 800px;
   padding: 18px;
   position: relative;
+}
+
+.gallery .slick-track {
+  width: 100% !important;
 }
 
 .carousel {
   background: #050608;
   border-radius: 12px;
   flex-direction: column;
+  min-height: 500px;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -385,10 +391,10 @@ nav.main-nav {
 
 .slide {
   flex: 1 0 100%;
-  align-content: center;
   place-items: center;
-  padding: 12px;
   display: grid;
+  opacity: 1 !important;
+  position: relative !important;
 }
 
 .slide .image-wrap {
@@ -407,6 +413,7 @@ nav.main-nav {
   -o-object-position: center center;
   object-position: center center;
   cursor: zoom-in;
+  width: 100%;
   height: 100%;
   transition: transform .26s var(--ease);
   border-radius: 10px;
@@ -701,6 +708,11 @@ nav.main-nav {
   fill: #071018;
 }
 
+.save-icon svg path {
+  stroke: var(--muted);
+  fill: var(--muted);
+}
+
 .qty {
   background: rgba(255, 255, 255, .02);
   border-radius: 10px;
@@ -903,6 +915,10 @@ nav.main-nav {
   font-size: 13px;
 }
 
+.review .text {
+  color: var(--text);
+}
+
 .rating {
   color: var(--gold);
   text-shadow: 0 1px rgba(0, 0, 0, .25);
@@ -928,8 +944,8 @@ nav.main-nav {
 .vertical-gallery .vg-img {
   background: #06070a;
   border-radius: 12px;
-  width: 100%;
-  height: 380px;
+  width: 50%;
+  height: 500px;
   overflow: hidden;
 }
 
@@ -1169,6 +1185,55 @@ footer {
     transition: none !important;
     animation: none !important;
   }
+}
+
+.shipping {
+  color: var(--muted);
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.consult-note {
+  color: var(--muted);
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 13px;
+  display: flex;
+}
+
+.each-note {
+  color: var(--muted);
+  margin-top: 14px;
+  font-size: 13px;
+}
+
+.productTabs .ant-tabs-tab {
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--fast), transform var(--fast);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 700;
+}
+
+.productTabs .ant-tabs-tab-active {
+  background: var(--accent-grad);
+  color: #071018;
+  box-shadow: var(--shadow);
+  font-weight: 800;
+}
+
+.productTabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #071018 !important;
+}
+
+.productTabs .ant-tabs-content-holder h3 {
+  color: var(--text);
+}
+
+.productTabs .ant-tabs-content-holder h4 {
+  color: var(--text);
 }
 
 /*# sourceMappingURL=app_styles_product_410c3419.css.map*/

@@ -11,10 +11,12 @@ export const metadata = {
 export default function ShopPage() {
   return (
     <>
-      <HeaderClient />
+      {/* <HeaderClient /> */}
       <main>
         {/* 客户端组件，封装全部动态逻辑 */}
-        <ShopClient />
+        <div style={{ maxWidth: '1280px', minHeight:'70vh',margin: '72px auto 36px', padding: 18 }}>
+          <ShopClient  />
+        </div>
       </main>
       <Footer />
     </>

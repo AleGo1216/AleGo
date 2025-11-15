@@ -7,6 +7,7 @@ import ReviewsCarousel from "./components/ReviewsCarousel";
 import Footer from "./components/Footer";
 import ConsultationIcon from "./components/ConsultationIcon";
 import {createClient} from '@/lib/supabase/server'
+import BrandStory from "./components/BrandStory";
 
 export default async function Home() {
   // page is server component by default; it composes server components and client components.
@@ -60,8 +61,9 @@ export default async function Home() {
         <CategorySection title="In-Stock Exclusives" products = {inStockProduct}/>
       <HotDeals products={hotDealProduct}/>
       <ReviewsCarousel />
+      <BrandStory></BrandStory>
       <Footer />
-      <ConsultationIcon />
+      {/* <ConsultationIcon /> */}
     </main>
   );
 }

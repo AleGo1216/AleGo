@@ -27,9 +27,11 @@ export default function Footer() {
         </div>
         <div className="footer-section social-icons">
           <h3>Follow Us</h3>
-          <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f" /></a>
-          <a href="#" aria-label="Twitter"><i className="fab fa-twitter" /></a>
-          <a href="#" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+          <ul>
+          <li> <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f" /></a></li>
+          <li>  <a href="#" aria-label="Twitter"><i className="fab fa-twitter" /></a></li>
+          <li>     <a href="#" aria-label="Instagram"><i className="fab fa-instagram" /></a></li>
+          </ul>
         </div>
       </div>
       <div style={{ textAlign: "center", marginTop: 16, color: "#999" }}>
